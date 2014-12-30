@@ -3,9 +3,9 @@ from flask import Flask, render_template, request, url_for
 from flask.ext.shelve import get_shelve, init_app
 
 app = Flask(__name__)
-app.config['SHELVE_FILENAME'] = 'word_result.shelve'
-init_app(app)
-word_complete =  get_shelve('c')
+#app.config['SHELVE_FILENAME'] = 'word_result.shelve'
+#init_app(app)
+#word_complete =  get_shelve('c')
 
 #word_complete = shelve.open('static/word_result.shelve' , 'r')
 
@@ -20,7 +20,7 @@ def form(name=None):
 	return render_template('test.html',  name='')
 
 def word_complete(word):
-    return word_complete[word]
+    return ['1','2','3','4']
 
 @app.route("/ajax_post_test", methods=['POST'])
 def ajax_post_test():
