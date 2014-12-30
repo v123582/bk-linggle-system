@@ -1,8 +1,12 @@
 import os
 from flask import Flask, render_template, request, url_for
-import shelve
+import sqlite3dbm
 
 app = Flask(__name__)
+#app.config['SHELVE_FILENAME'] = 'word_result.shelve'
+#init_app(app)
+#word_complete =  get_shelve('c')
+
 
 @app.route('/')
 @app.route('/data')
@@ -15,7 +19,8 @@ def form(name=None):
 	return render_template('test.html',  name='')
 
 def word_complete(word):
-    return ['1','2','3','4']
+    word_completex = sqlite3dbm.sshelve.open('word_result.db')
+    return word_completex[word][:10]
 
 @app.route("/ajax_post_test", methods=['POST'])
 def ajax_post_test():
