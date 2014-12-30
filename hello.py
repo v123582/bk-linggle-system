@@ -20,7 +20,11 @@ def form(name=None):
 
 def word_complete(word):
     word_completex = sqlite3dbm.sshelve.open('word_result.db')
-    return word_completex[word][:10]
+    try:
+        return word_completex[word][:10]
+    except Exception, e:
+         return ['Not Found!!']
+    
 
 @app.route("/ajax_post_test", methods=['POST'])
 def ajax_post_test():
@@ -31,8 +35,6 @@ def ajax_post_test():
     if request.form["value"] == '':
 	    return ''
     words = word_complete(request.form["value"])
-    if not words:
-        return '<ul><li>Not Found!!</li></ul>'
     for word in words:
 	    hint_list += '<li><a href="">'+word+'</a></li>'
     result = '<ul>'+ hint_list + '</ul>'
