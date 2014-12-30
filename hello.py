@@ -31,7 +31,8 @@ def ajax_post_test():
     if request.form["value"] == '':
 	    return ''
     words = word_complete(request.form["value"])
-
+    if not words:
+        return '<ul><li>Not Found!!</li></ul>'
     for word in words:
 	    hint_list += '<li><a href="">'+word+'</a></li>'
     result = '<ul>'+ hint_list + '</ul>'
