@@ -44,21 +44,22 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Start Bootstrap</h1>
-            <h3>Free Bootstrap Themes &amp; Templates</h3>
+            <h1>NLP2014 Final Project</h1>
+            <h3>103062590</h3>
             <br>
-            
 
             <div class="input-group col-lg-4 col-md-offset-4" id="search">
                 <form action="/" method="get">
-                    {% if name == '' %}
-                    <input type="text" name="k" class="form-control"  placeholder="Search for...">
-                    {% else %}
-                    <input type="text" name="k" class="form-control"  value="{{ name }}">
-                    {% endif %}
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Go!</button>
-                    </span>
+                    <div class="input-group">
+                        {% if name == '' %}
+                        <input type="text" name="k" class="form-control" placeholder="Search for...">
+                        {% else %}
+                        <input type="text" name="k" class="form-control"  value="{{ name }}">
+                        {% endif %}
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
                 </form>
             </div><!-- /input-group -->
             <div class=" col-lg-4 col-md-offset-4" id="livesearch">
@@ -77,10 +78,10 @@
 
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>
