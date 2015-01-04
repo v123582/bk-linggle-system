@@ -54,7 +54,7 @@
                         {% if name == '' %}
                         <input type="text" name="k" class="form-control" placeholder="Search for...">
                         {% else %}
-                        <input type="text" name="k" class="form-control"  value="{{ name }}">
+                        <input type="text" name="k" class="form-control"  value="{{ query }}">
                         {% endif %}
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Go!</button>
@@ -70,8 +70,12 @@
                 {% if name == '' %}
 
                 {% else %}
-                  <h3>Your search is '{{ name }}'!</h3>
+                    {% for message in name[:10] %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
                 {% endif %}
+
+
             </div>
         </div>
     </header>
