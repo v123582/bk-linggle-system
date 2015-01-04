@@ -14,7 +14,7 @@ tag_table = {'adj.':'JJ' , 'det.':'DT' , 'n.':'NN' , 'v.':'VB.*' , 'prep.':'IN'}
 
 
 def searchfun(lines):
-    database = sqlite3dbm.sshelve.open('query_result.db')
+    database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
     return_list = []
     try:                
         for line in database[lines]:
@@ -35,7 +35,7 @@ def search_tag(pos_tag , content):
             return_list.append(item)
     return return_list 
 def re_align(lists):
-    database = sqlite3dbm.sshelve.open('query_result.db')
+    database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
     result = []
     for statments in list(itertools.permutations(lists , len(lists))):
         statment =  " ".join(statments)
