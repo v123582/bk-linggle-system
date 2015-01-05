@@ -16,7 +16,7 @@ tag_table = {'adj.':'JJ' , 'det.':'DT' , 'n.':'NN' , 'v.':'VB.*' , 'prep.':'IN'}
 def searchfun(lines):
     database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
     return_list = []
-    try:                
+    try:
         for line in database[lines]:
             return_list.append(line)
     except Exception, e:
@@ -33,7 +33,7 @@ def search_tag(pos_tag , content):
         pattern = re.compile(tag_table[pos_tag])
         if pattern.match(pos):
             return_list.append(item)
-    return return_list 
+    return return_list
 def re_align(lists):
     database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
     result = []
@@ -123,7 +123,7 @@ def word_complete(lines):
             if not result:
                 return ['Not Found!!']
             else:
-                return result       
+                return result
     except Exception, e:
         return ['Not Found!!']
 
