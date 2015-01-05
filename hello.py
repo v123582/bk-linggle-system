@@ -46,6 +46,9 @@ def re_align(lists):
             pass
     return result
 
+def getkey(result):
+    return int(result.split(" ")[-1])
+
 @app.route('/')
 @app.route('/data')
 def form(name=None):
@@ -61,6 +64,7 @@ def form(name=None):
         result.extend(searchfun(temp))
         temp = lines.replace(replace_content , lists[or_index + 1])
         result.extend(searchfun(temp))
+        result = sorted(result , key = getkey , reverse=True)
         return render_template('test.html',  name=result, query = lines)
     if '_' in lines:
         result.extend(searchfun(lines))
@@ -72,6 +76,7 @@ def form(name=None):
         result.extend(searchfun(temp))
         temp = lines.replace('*','_ _ _')
         result.extend(searchfun(temp))
+        result = sorted(result , key = getkey , reverse=True)
         return render_template('test.html',  name=result, query = lines)
     if '?' in lines:
         temp = lines.replace('?','')
@@ -101,7 +106,11 @@ def form(name=None):
         result = re_align(lists)
         return render_template('test.html', name=result, query = lines)
     database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
-    result = database[lines]
+    try:
+        result = database[lines]
+    except Exception, e:
+        result = ["Not Found!!"]
+    
     return render_template('test.html',   name=result, query = lines)
 
 
@@ -110,22 +119,27 @@ def word_complete(lines):
     try:
         if " " not in lines:
             return word_complete[lines][:10]
-        elif " " == lines[-1]:
-            return searchfun((lines + "_"))[:10]
+        elif " " == lines[-1] and "_" not in lines:
+            if not searchfun((lines + "_")):
+                return ['Not Found!! 0']
+            else:
+                return searchfun((lines + "_"))[:10]
         else:
             prefix = " ".join(lines.split(" ")[:-1]) + " _"
             uncomplete = lines.split(" ")[-1]
+            if uncomplete == "":
+                return ['Not Found!! 0']
             reg = re.compile("^"+uncomplete)
             result = []
             for word in searchfun(prefix):
                 if re.search(reg , word.split(" ")[-2]):
                     result.append(word)
             if not result:
-                return ['Not Found!!']
+                return ['Not Found!! 0']
             else:
                 return result
     except Exception, e:
-        return ['Not Found!!']
+        return ['Not Found!! 0']
 
 
 @app.route("/ajax_post_test", methods=['POST'])
