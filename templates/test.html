@@ -65,16 +65,25 @@
             <div class=" col-lg-4 col-md-offset-4" id="livesearch">
   
             </div>
-
+<p>
             <div class=" col-lg-4 col-md-offset-4" =>
                 {% if name == '' %}
-
                 {% else %}
-                    {% for message in name[:10] %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                {% endif %}
 
+
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    Result
+  </a>
+                      {% for message in name[:10] %}
+
+  <a href="#" class="list-group-item">{{ message }}</a>
+  
+
+                    {% endfor %}
+</div>
+
+                {% endif %}
 
             </div>
         </div>

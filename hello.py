@@ -100,15 +100,33 @@ def form(name=None):
         lists = temp.split(" ")
         result = re_align(lists)
         return render_template('test.html', name=result, query = lines)
-    return render_template('test.html',  name='')
+    database = sqlite3dbm.sshelve.open('/Users/mac/Desktop/query_result.db')
+    result = database[lines]
+    return render_template('test.html',   name=result, query = lines)
 
-def word_complete(word):
-    word_completex = sqlite3dbm.sshelve.open('word_result.db')
+
+def word_complete(lines):
+    word_complete = sqlite3dbm.sshelve.open('word_result.db')
     try:
-        return word_completex[word][:10]
+        if " " not in lines:
+            return word_complete[lines][:10]
+        elif " " == lines[-1]:
+            return searchfun((lines + "_"))[:10]
+        else:
+            prefix = " ".join(lines.split(" ")[:-1]) + " _"
+            uncomplete = lines.split(" ")[-1]
+            reg = re.compile("^"+uncomplete)
+            result = []
+            for word in searchfun(prefix):
+                if re.search(reg , word.split(" ")[-2]):
+                    result.append(word)
+            if not result:
+                return ['Not Found!!']
+            else:
+                return result       
     except Exception, e:
-         return ['Not Found!!']
-    
+        return ['Not Found!!']
+
 
 @app.route("/ajax_post_test", methods=['POST'])
 def ajax_post_test():
@@ -120,9 +138,11 @@ def ajax_post_test():
 	    return ''
     words = word_complete(request.form["value"])
     for word in words:
-	    hint_list += '<li><a href="">'+word+'</a></li>'
+        word = ' '.join(word.split(' ')[:-1])
+        hint_list += '<li><a href="?k='+ word +'">'+word+'</a></li>'
     result = '<ul>'+ hint_list + '</ul>'
     return result
+
 
 
 if __name__ == '__main__':
