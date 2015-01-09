@@ -1,284 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>NLP2014 Final Project | BillyKing Linggle </title>
-
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{url_for('static', filename='css/stylish-portfolio.css')}}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <style>
-    #livesearch{  z-index:1 ; display:none;   background:#FFF;}
-    #livesearch li{ text-align: left;}
-    #help{  position:  fixed; }
-
-    </style>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>NLP2014 Final Project | BillyKing Linggle</title>
+        <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+        <!-- Bootstrap Core CSS -->
+        <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="{{url_for('static', filename='css/stylish-portfolio.css')}}" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <style>
+            #livesearch {
+                z-index:1;
+                display:none;
+                background:#FFF;
+            }
+            #livesearch li {
+                text-align: left;
+            }
+            #help {
+                position: fixed;
+            }
+        </style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
-
+    
     <body>
-
-
-
         <!-- Header -->
         <header id="top" class="header">
             {% if name != '' and name != ['Not Found!!'] and name != ['True'] and name != ['False'] %}
-            <div class="text-vertical-center" style="vertical-align: top; ">
-                 <a href="/"><img src="http://i.imgur.com/92zEnNM.png" height="120" title="source: imgur.com" /></a>    
+                <div class="text-vertical-center" style="vertical-align: top; "> <a href="/">
+                <img src="http://i.imgur.com/92zEnNM.png" height="120" title="source: imgur.com" /></a> 
             {% else %}
-            <div class="text-vertical-center" >
-                 <a href="/"><img src="http://i.imgur.com/92zEnNM.png" title="source: imgur.com" /></a>
+                <div class="text-vertical-center"> <a href="/"><img src="http://i.imgur.com/92zEnNM.png" title="source: imgur.com" /></a>
             {% endif %}
-		
+                        <h3>NLP Final Project | 103062590 & 103062629 </h3>
 
-		<h3>NLP Final Project | 103062590 & 103062629 </h3>
-                <br>
-                <a href="?k=play _ _ _">example1</a>
-                <a href="?k=play *">example2</a>
-                <a href="?k=play a adj.">example3</a>
-                <a href="?k=play | plays a key">example4</a>
-                <a href="?k=r. an important play role">example5</a>
-                <a href="?k=play ?in role">example6</a>
-                <a href="?k=play ?in power">example7</a>
-                <a href="?k=!@(*%$_))@^%)">example8</a>
+                    <br> <a href="?k=play _ _ _">example1</a>
+                         <a href="?k=play *">example2</a>
+                         <a href="?k=play a adj.">example3</a>
+                         <a href="?k=play | plays a key">example4</a>
+                         <a href="?k=r. an important play role">example5</a>
+                         <a href="?k=play ?in role">example6</a>
+                         <a href="?k=play ?in power">example7</a>
+                         <a href="?k=!@(*%$_))@^%)">example8</a>
 
-
-
-
-                <div class="input-group col-lg-4 col-md-offset-4" id="search">
-                    <form action="/" method="get">
-                        <div class="input-group">
-                            {% if name == '' %}
-                            <input type="text" name="k" class="form-control" placeholder="Search for...">
-                            {% else %}
-                            <input type="text" name="k" class="form-control"  value="{{ query }}">
-                            {% endif %}
-                            <span class="input-group-btn">
+                    <div class="input-group col-lg-4 col-md-offset-4" id="search">
+                        <form action="/" method="get">
+                            <div class="input-group">{% if name == '' %}
+                                <input type="text" name="k" class="form-control" placeholder="Search for...">{% else %}
+                                <input type="text" name="k" class="form-control" value="{{ query }}">{% endif %} <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">Go!</button>
                             </span>
-                            <!-- Small modal -->
 
-                        </div><!-- /input-group -->
-                    </form>
+                                <!-- Small modal -->
+                            </div>
+                            <!-- /input-group -->
+                        </form>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                        </button>
+                                         <h4 class="modal-title" id="myModalLabel">help</h4>
 
-
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-
-                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">help</h4>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table"><tbody>
-                                <tr><td ><div><span class="label label-primary">_</span></div></td>
-                                    <td ><div>search for <span class="label label-primary">any</span> word</div></td>
-                                </tr>
-                                <tr>
-                                    <td ><div><span class="label label-primary">?</span><m>Term</m></div></td><td ><div>search for <m>Term</m> <span class="label label-primary">optionally</span></div></td></tr>
-                                    <tr>
-                                        <td ><div><span class="label label-primary">*</span></div></td><td ><div>match <span class="label label-primary">zero or more</span> words</div></td></tr>
-                                        <tr>
-                                            <td ><div>Term1<span class="label label-primary">/</span>Term2</div></td><td ><div>with either Term1 <span class="label label-primary">or</span> Term2</div></td>
-                                        </tr>
-                                        <tr>
-                                            <td ><div><span class="label label-primary">part-of-speech</span></div></td><td ><div>search for word with specific part-of-speech.<br>
-                                            <span class="label label-primary">v.</span>(verb), 
-                                            <span class="label label-primary">n.</span>(noun),
-                                            <span class="label label-primary">adj.</span>(adjective), 
-                                            <span class="label label-primary">prep.</span>(preposition), <br> and
-                                            <span class="label label-primary">det.</span>(determiner)</div></td>
-                                        </tr></tbody></table>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div><span class="label label-primary">_</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>search for <span class="label label-primary">any</span> word</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div><span class="label label-primary">?</span>
+                                                            <m>Term</m>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>search for
+                                                            <m>Term</m> <span class="label label-primary">optionally</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div><span class="label label-primary">*</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>match <span class="label label-primary">zero or more</span> words</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>Term1<span class="label label-primary">/</span>Term2</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>with either Term1 <span class="label label-primary">or</span> Term2</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div><span class="label label-primary">part-of-speech</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>search for word with specific part-of-speech.
+                                                            <br> <span class="label label-primary">v.</span>(verb), <span class="label label-primary">n.</span>(noun), <span class="label label-primary">adj.</span>(adjective), <span class="label label-primary">prep.</span>(preposition),
+                                                            <br>and <span class="label label-primary">det.</span>(determiner)</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
-                    </div><!-- /input-group -->
-
+                    </div>
+                    <!-- /input-group -->
                     <div class=" col-lg-4 col-md-offset-4" id="help">
-                  <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>help</button>
-
-                    <a href="/"><button type="button" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span>clear</button></a>
-                    </div>
-
-                    <div class=" col-lg-4 col-md-offset-4" id="livesearch">
+                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>help</button> <a href="/"><button type="button" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span>clear</button></a>
 
                     </div>
-
-
-
-
-<br><br>
-
-
-
-
-
-                    <div class=" col-lg-4 col-md-offset-4"  id="help">
-                        {% if name == ['Not Found!!'] %}
-                        <div class="alert alert-danger" role="alert">Your query is not found.</div>
-
-                        {% elif name == ['True'] %}
-                        <div class="alert alert-success" role="alert">Your query is true.</div>
-
-                        {% elif name == ['False'] %}
-                        <div class="alert alert-warning" role="alert">Your query is flase.</div>
-
-
-                        {% else %}
-
-                        {% if name == '' %}
-                        {% else %}
-
+                    <div class=" col-lg-4 col-md-offset-4" id="livesearch"></div>
+                    <br>
+                    <br>
+                    <div class=" col-lg-4 col-md-offset-4" id="help">{% if name == ['Not Found!!'] %}
+                        <div class="alert alert-danger" role="alert">Your query is not found.</div>{% elif name == ['True'] %}
+                        <div class="alert alert-success" role="alert">Your query is true.</div>{% elif name == ['False'] %}
+                        <div class="alert alert-warning" role="alert">Your query is flase.</div>{% else %} {% if name == '' %} {% else %}
                         <div class="alert alert-info" role="alert">Your query is exist.</div>
-
-                  </div>
-<br><br>
-                                      <div class=" col-lg-6 col-md-offset-3"  id="help">
-
+                    </div>
+                    <br>
+                    <br>
+                    <div class=" col-lg-6 col-md-offset-3" id="help">
                         <div class="jumbotron" style="background-color: rgba(238, 238, 238, 0.67);padding-top: 0px;  text-align:left;  padding-bottom: 10px; margin-bottom: 0px;">
-
                             <div class="page-header" style=" padding-bottom: 0px; ">
-                              <h3>Result <small>for your query</small></h3>
-                          </div>
+                                 <h3>Result <small>for your query</small></h3>
 
-
-
-                          {% for message in name[index|int-1:4+index|int] %}
-
-
-
-
-                          <li><h4>{{ message }}</h4></li>
-
-
-
-                          {% endfor %}
-                        </div>
-{% if size|int != 0%}
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="?k={{ query }}&index={{ index|int-6 }}" aria-label="Previous">
+                            </div>{% for message in name[index|int-1:4+index|int] %}
+                            <li>
+                                <h4>{{ message }}</h4>
+                            </li>{% endfor %}</div>{% if size|int != 0%}
+                        <nav>
+                            <ul class="pagination">
+                                <li> <a href="?k={{ query }}&index={{ index|int-6 }}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
-    </li>
-    {% for i in range(1,size|int,5) %}
 
-    <li><a href="?k={{ query }}&index={{ i }}">{{i//5+1}}</a></li>
-    {% endfor %}
-
-    <li>
-      <a href="?k={{ query }}&index={{ index|int+6 }}" aria-label="Next">
+                                </li>{% for i in range(1,size|int,5) %}
+                                <li><a href="?k={{ query }}&index={{ i }}">{{i//5+1}}</a>
+                                </li>{% endfor %}
+                                <li> <a href="?k={{ query }}&index={{ index|int+6 }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
-    </li>
-  </ul>
-</nav>
-{% endif %}
 
-                    </div>
-
-
-                      {% endif %}
-                      {% endif %}
-
-               </div>
-
-
-<br><br><br>
-          </header>
-
-
-
-
-
-          <!-- jQuery -->
-          <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
-
-          <!-- Bootstrap Core JavaScript -->
-          <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-
-          <!-- Custom Theme JavaScript -->
-          <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-    </script>
-
-
-
-
-    <script>
-    $(function(){
-
-
-        $('#search input[name="k"]').keyup(function(){
-            $.post('/ajax_post_test',{'value':$(this).val()},function(data){
-                if(data=='0') $('#livesearch').html('').css('display','none');
-                else $('#livesearch').html(data).css('display','block');
+                                </li>
+                            </ul>
+                        </nav>{% endif %}</div>{% endif %} {% endif %}</div>
+                <br>
+                <br>
+                <br>
+        </header>
+        <!-- jQuery -->
+        <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+        <!-- Custom Theme JavaScript -->
+        <script>
+            // Closes the sidebar menu
+            $("#menu-close").click(function(e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
             });
-        });
 
-    });
-    </script>
+            // Opens the sidebar menu
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+
+            // Scrolls to the selected menu item on the page
+            $(function() {
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(function() {
 
 
+                $('#search input[name="k"]').keyup(function() {
+                    $.post('/ajax_post_test', {
+                        'value': $(this).val()
+                    }, function(data) {
+                        if (data == '0') $('#livesearch').html('').css('display', 'none');
+                        else $('#livesearch').html(data).css('display', 'block');
+                    });
+                });
 
-
-</body>
+            });
+        </script>
+    </body>
 
 </html>
