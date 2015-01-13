@@ -42,11 +42,16 @@
         <header id="top" class="header">
             {% if name != '' and name != ['Not Found!!'] and name != ['True'] and name != ['False'] %}
                 <div class="text-vertical-center" style="vertical-align: top; "> <a href="/">
-                <img src="http://i.imgur.com/92zEnNM.png" height="120" title="source: imgur.com" /></a> 
+                <img src="http://i.imgur.com/92zEnNM.png" height="100" title="source: imgur.com" /></a> 
+                <h4>NLP Final Project | 103062590 & 103062629 </h3>
+
             {% else %}
                 <div class="text-vertical-center"> <a href="/"><img src="http://i.imgur.com/92zEnNM.png" title="source: imgur.com" /></a>
+                <h3>NLP Final Project | 103062590 & 103062629 </h3>
+
             {% endif %}
-                        <h3>NLP Final Project | 103062590 & 103062629 </h3>
+
+
 
                     <br> <a href="?k=play _ _ _">example1</a>
                          <a href="?k=play *">example2</a>
@@ -92,6 +97,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
+                                                        <div><span class="label label-primary">*</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>match <span class="label label-primary">zero or more</span> words</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
                                                         <div><span class="label label-primary">?</span>
                                                             <m>Term</m>
                                                         </div>
@@ -102,21 +116,22 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                
                                                 <tr>
                                                     <td>
-                                                        <div><span class="label label-primary">*</span>
-                                                        </div>
+                                                        <div>Term1<span class="label label-primary">|</span>Term2</div>
                                                     </td>
                                                     <td>
-                                                        <div>match <span class="label label-primary">zero or more</span> words</div>
+                                                        <div>with either Term1 <span class="label label-primary">or</span> Term2</div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <div>Term1<span class="label label-primary">/</span>Term2</div>
+                                                        <div><span class="label label-primary">r.</span> Term
+                                                        </div>
                                                     </td>
                                                     <td>
-                                                        <div>with either Term1 <span class="label label-primary">or</span> Term2</div>
+                                                        <div><span class="label label-primary">Rearrangement</span> order of this term</div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -146,24 +161,34 @@
 
                     </div>
                     <div class=" col-lg-4 col-md-offset-4" id="livesearch"></div>
-                    <br>
-                    <br>
+                    
                     <div class=" col-lg-4 col-md-offset-4" id="help">{% if name == ['Not Found!!'] %}
-                        <div class="alert alert-danger" role="alert">Your query is not found.</div>{% elif name == ['True'] %}
-                        <div class="alert alert-success" role="alert">Your query is true.</div>{% elif name == ['False'] %}
-                        <div class="alert alert-warning" role="alert">Your query is flase.</div>{% else %} {% if name == '' %} {% else %}
-                        <div class="alert alert-info" role="alert">Your query is exist.</div>
+                        <br><br>
+                        <div class="alert alert-danger" role="alert">Your query is not found.</div><br><br>{% elif name == ['True'] %}<br><br>
+                        <div class="alert alert-success" role="alert">Your query is true.</div><br><br>{% elif name == ['False'] %}<br><br>
+                        <div class="alert alert-warning" role="alert">Your query is flase.</div><br><br>{% else %} {% if name == '' %} {% else %}
+                        
                     </div>
-                    <br>
                     <br>
                     <div class=" col-lg-6 col-md-offset-3" id="help">
                         <div class="jumbotron" style="background-color: rgba(238, 238, 238, 0.67);padding-top: 0px;  text-align:left;  padding-bottom: 10px; margin-bottom: 0px;">
                             <div class="page-header" style=" padding-bottom: 0px; ">
                                  <h3>Result <small>for your query</small></h3>
 
-                            </div>{% for message in name[index|int-1:4+index|int] %}
+                            </div>{% for i in range(index|int-1,4+index|int) %}
+                            {% if name[i] %}
                             <li>
-                                <h4>{{ message }}</h4>
+                                <h4>{{ name[i] }}
+                                <a class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#collapseExample_{{ name[i]|replace(' ', '') }}" aria-expanded="false" aria-controls="collapseExample_{{ name[i]|replace(' ', '') }}">
+                                  Example
+                                </a></h4>
+                                <div class="collapse" id="collapseExample_{{ name[i]|replace(' ', '') }}">
+                                  <div class="well">
+                                    {{ gdex[i] }}
+                                  </div>
+                                </div>  
+                                                         {% endif %}
+   
                             </li>{% endfor %}</div>{% if size|int != 0%}
                         <nav>
                             <ul class="pagination">
@@ -184,6 +209,9 @@
                 <br>
                 <br>
                 <br>
+
+
+
         </header>
         <!-- jQuery -->
         <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
@@ -221,6 +249,10 @@
             });
         </script>
         <script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
             $(function() {
 
 
