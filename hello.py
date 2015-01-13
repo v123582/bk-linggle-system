@@ -51,7 +51,10 @@ def gdex(lists):
             begin_index = search_all_index(Sent_list , lists[0])
             for word in lists[1:]:
                 next_index = search_all_index(Sent_list , word)
-                cum_flag = False
+                if len(lists) == 1:
+                    cum_flag = True
+                else:
+                    cum_flag = False
                 for i in begin_index:
                     for n in next_index:
                         if(int(fabs(i - n)) < 3):
@@ -174,10 +177,11 @@ def form(name=None):
     numbers = []
     gdexs = []
     database = sqlite3dbm.sshelve.open('query_result.db')
-    try:
-        result = database[lines]
-    except Exception, e:
-        result = ["Not Found!!"]
+    if size == 0:
+        try:
+            result = database[lines]
+        except Exception, e:
+            result = ["Not Found!!"]
     for item in result:
         gdexs.append(gdex(item))
         item =  item.split(" ")
@@ -185,8 +189,10 @@ def form(name=None):
         number = item[-1]
         words.append(word)
         numbers.append(number)
+    
     if size != 0:
         return render_template('test.html',index=index, name=result,gdex = gdexs, query = lines, size=size)
+        
     return render_template('test.html',index=index, name=result,gdex = gdexs, query = lines, size=size)
 
 
